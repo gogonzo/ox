@@ -3,7 +3,7 @@
 \name{ie}
 \alias{ie}
 \alias{nie}
-\title{Short hand \code{ifelse}}
+\title{Short hand if-else}
 \usage{
 ie(fun, ..., .else)
 
@@ -16,31 +16,30 @@ nie(fun, ..., .else)
 arguments passed to the \code{fun} in the same order.}
 
 \item{.else}{\cr
-replacement object. NOTE that if \code{.else} is not specified as named argument
-else the last unnamed argument will be taken as a replacement (it will
-not be used in the \code{fun}).}
+negative-replacement. NOTE that if \code{.else} is not specified directly by naming
+argument then the last unnamed argument (from \code{...}) will be considered as a
+replacement (it will not be used in the \code{fun}).}
 }
 \description{
-Short hand \code{ifelse} functions for easy values switching.
+Short hand if-else functions for easy values switching.
+\code{ie} evaluates function returning a single logical value and depending on the
+result returning:
 \itemize{
-\item \code{ie} (if-else) - returns first argument from \code{...} if \code{TRUE},
-returns \code{.else} otherwise.
-\item \code{nie} (negative it-else) - returns \code{.else} if \code{TRUE} and first argument
-from \code{...} otherwise.
+\item on \code{TRUE} - \code{ie} returns \code{...[1]}. First element in \code{...} is considered
+as a  positive-replacement.
+\item on \code{FALSE} - \code{ie} returns \code{.else} (negative-replacement).
 }
+}
+\details{
+To invert switch one can use \code{nie} which is equivalent of
+\code{ie(Negate(fun), ..., .else)}.
 }
 \examples{
 # return don't switch if TRUE
 ie(is.null, NULL, "y")
-
-ie(function(x, min, max) nchar(x) >= min && nchar(x) <= max,
-   x = "x", min = 0, max = 1,
-   .else = "test passed")
+ie(grepl, x = "some text", pattern = "word", .else = "does not contain a word")
 
 # return replacement `y` if is TRUE
 nie(is.null, NULL, "y")
-
-nie(function(x, min, max) nchar(x) >= min && nchar(x) <= max,
-   x = "test", min = 20, max = Inf,
-   .else = "replacement")
+nie(grepl, x = "some text", pattern = "word", .else = "does not contain a word")
 }

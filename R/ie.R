@@ -1,25 +1,26 @@
-#' Short hand `ifelse`
+#' Short hand if-else
 #'
-#' Short hand `ifelse` functions for easy values switching.
-#' * `ie` (if-else) - returns first argument from `...` if `TRUE`,
-#'  returns `.else` otherwise.
-#' * `nie` (negative it-else) - returns `.else` if `TRUE` and first argument
-#'  from `...` otherwise.
+#' Short hand if-else functions for easy values switching.
+#' `ie` evaluates function returning a single logical value and depending on the
+#' result returning:
+#' * on `TRUE` - `ie` returns `...[1]`. First element in `...` is considered
+#' as a  positive-replacement.
+#' * on `FALSE` - `ie` returns `.else` (negative-replacement).
+#'
+#' To invert switch one can use `nie` which is equivalent of
+#' `ie(Negate(fun), ..., .else)`.
 #' @param fun [`function`]\cr
 #' @param ... \cr
 #'  arguments passed to the `fun` in the same order.
 #' @param .else \cr
-#'  replacement object. NOTE that if `.else` is not specified as named argument
-#'  else the last unnamed argument will be taken as a replacement (it will
-#'  not be used in the `fun`).
+#'  negative-replacement. NOTE that if `.else` is not specified directly by naming
+#'  argument then the last unnamed argument (from `...`) will be considered as a
+#'  replacement (it will not be used in the `fun`).
 #'
 #' @examples
 #' # return don't switch if TRUE
 #' ie(is.null, NULL, "y")
-#'
-#' ie(function(x, min, max) nchar(x) >= min && nchar(x) <= max,
-#'    x = "x", min = 0, max = 1,
-#'    .else = "test passed")
+#' ie(grepl, x = "some text", pattern = "word", .else = "does not contain a word")
 #'
 #' @export
 ie <- function(fun, ..., .else) {
@@ -42,10 +43,7 @@ ie <- function(fun, ..., .else) {
 #' @examples
 #' # return replacement `y` if is TRUE
 #' nie(is.null, NULL, "y")
-#'
-#' nie(function(x, min, max) nchar(x) >= min && nchar(x) <= max,
-#'    x = "test", min = 20, max = Inf,
-#'    .else = "replacement")
+#' nie(grepl, x = "some text", pattern = "word", .else = "does not contain a word")
 #' @export
 nie <- function(fun, ..., .else) {
   ie(fun = Negate(fun), ..., .else = .else)
