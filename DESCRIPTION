@@ -1,0 +1,12 @@
+Package: ie
+Type: Package
+Title: Shorthand if-else
+Version: 0.1.0
+Author: c(person("Dawid", "Kaledkowski", , "dawid.kaledkowski@gmail.com", role = "aut"))
+Maintainer: Dawid Kałędkowski <dawid.kaledkowski@gmail.com>
+Description: Shorthand if-else call
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2

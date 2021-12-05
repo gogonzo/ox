@@ -1,0 +1,32 @@
+# compiled objs
+\.o$
+\.so$
+\.dll$
+
+# Rstudio project
+^.*\.Rproj$
+^\.Rproj\.user$
+
+# Rmd
+^README\.Rmd$
+^README-.*\.png$
+^docs$
+
+# git files
+\.git
+\.github
+\.gitignore
+
+# automation
+^appveyor\.yml$
+^codecov\.yml$
+^codemeta\.json$
+^cran-comments.md$
+.*Makefile$
+^pkgdown$
+^_pkgdown\.yml$
+
+# exclude
+inst/automation-checks
+inst/tinytest/test_external*
+inst/WORDLIST
