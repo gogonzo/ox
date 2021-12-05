@@ -1,2 +1,2 @@
 library(ie)
-test_check("ie")
+testthat::test_check("ie")

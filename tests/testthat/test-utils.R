@@ -1,26 +1,31 @@
-testthat::test_that("which_then returns index of the last unnamed list element", {
-  expect_identical(which_then(list(1, "a", 2, 3)), 4L)
-  expect_identical(which_then(list(a = 1, "a", b = 2)), 2L) #todo: maybe it should throw an error - if .then not specified it should be listed as the last
-  expect_identical(which_then(list(a = 1, "a", b = 2, "b")), 4L)
+testthat::test_that("which_else returns index of the last unnamed list element", {
+  expect_identical(which_else(list(1, "a", 2, 3)), 4L)
+  expect_identical(which_else(list(a = 1, "a", b = 2)), 2L) #todo: maybe it should throw an error - if .else not specified it should be listed as the last
+  expect_identical(which_else(list(a = 1, "a", b = 2, "b")), 4L)
 })
 
-testthat::test_that("which_then returns empty integer when all list elements are named", {
-  expect_identical(which_then(list(a = 1, b = 2, c = 3)), integer(0))
+testthat::test_that("which_else returns empty integer when all list elements are named", {
+  expect_identical(which_else(list(a = 1, b = 2, c = 3)), integer(0))
 })
 
-testthat::test_that("get_then returns the last unnamed list element", {
-  expect_identical(get_then(list(a = 1, b = 2, 3, c = 4)), 3)
+testthat::test_that("get_else returns the last unnamed list element", {
+  expect_identical(get_else(list(a = 1, b = 2, 3, c = 4)), 3)
 })
 
-testthat::test_that("get_then errors when all list elements are named", {
+testthat::test_that("get_else errors when all list elements are named", {
   expect_error(
-    get_then(list(a = 1, b = 2, c = 4)),
-    "All arguments are named and .then is not among them. Please specify .then"
+    get_else(list(a = 1, b = 2, c = 4)),
+    "All arguments are named and .else is not among them. Please specify .else"
   )
 })
 
-testthat::test_that("args_drop_then drops latest unnamed index", {
-  expect_identical(args_drop_then(list(a = 1, b = 2, 3, c = 4)), list(a = 1, b = 2, c = 4))
+testthat::test_that("args_drop_else drops latest unnamed index", {
+  expect_identical(args_drop_else(list(a = 1, b = 2, 3, c = 4)), list(a = 1, b = 2, c = 4))
+})
+
+testthat::test_that("args_drop_else drops latest unnamed index", {
+  expect_error(args_drop_else(list(1)),
+               "ie requires at least two arguments")
 })
 
 testthat::test_that("validate_args returns null when all args match function formals", {
@@ -41,7 +46,3 @@ testthat::test_that("validate_args throws when some args does not match function
     "provided function does not accept following"
   )
 })
-
-
-
-
