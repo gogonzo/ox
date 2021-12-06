@@ -4,10 +4,10 @@
 \alias{validate_fun_args}
 \title{Get index of an \code{.else} argument}
 \usage{
-validate_fun_args(fun, args)
+validate_fun_args(.f, args)
 }
 \arguments{
-\item{fun}{\code{\link{function}}\cr}
+\item{.f}{(\code{function}) evaluated as \code{.f(...)}. Must return single logical value}
 
 \item{args}{\code{\link{list}}\cr arguments}
 }

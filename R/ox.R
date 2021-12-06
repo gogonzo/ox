@@ -10,8 +10,8 @@
 #'
 #' @details
 #'
-#' \if{html}{\figure{uml.jpg}{options: width="75\%" alt="Figure: uml.jpg"}}
-#' \if{latex}{\figure{uml.jpg}{options: width=7cm}}
+#' \if{html}{\figure{ie_uml.jpg}{options: width="75\%" alt="Figure: ie_uml.jpg"}}
+#' \if{latex}{\figure{ie_uml.jpg}{options: width=7cm}}
 #'
 #' #' `ox` evaluates function `.f` which returns a single logical value and and
 #' depending on the result `ox` returns:

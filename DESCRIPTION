@@ -1,4 +1,4 @@
-Package: ie
+Package: ox
 Type: Package
 Title: Shorthand if-else
 Version: 0.1.0

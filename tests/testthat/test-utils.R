@@ -25,7 +25,7 @@ testthat::test_that("args_drop_else drops latest unnamed index", {
 
 testthat::test_that("args_drop_else drops latest unnamed index", {
   expect_error(args_drop_else(list(1)),
-               "ie requires at least two arguments")
+               "ox requires at least two arguments")
 })
 
 testthat::test_that("validate_args returns null when all args match function formals", {
@@ -33,7 +33,7 @@ testthat::test_that("validate_args returns null when all args match function for
 })
 
 testthat::test_that("validate_args returns null when all args match primitive formals", {
-  testthat::expect_null(validate_fun_args(fun = is.null, args = list(x = 1)))
+  testthat::expect_null(validate_fun_args(.f = is.null, args = list(x = 1)))
 })
 
 testthat::test_that("validate_args throws when some args does not match function formals", {
@@ -42,7 +42,7 @@ testthat::test_that("validate_args throws when some args does not match function
     "provided function does not accept following"
   )
   testthat::expect_error(
-    validate_fun_args(fun = is.null, args = list(x = 1, extra = 1)),
+    validate_fun_args(.f = is.null, args = list(x = 1, extra = 1)),
     "provided function does not accept following"
   )
 })

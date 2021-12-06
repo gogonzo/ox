@@ -39,8 +39,8 @@ args_drop_else <- function(args) {
   idx <- which_else(args)
   args[[idx]] <- NULL
   if (length(args) == 0) {
-    stop("ie requires at least two arguments. One to as a replacement when `fun`",
-         " returns TRUE and other (.else) when `fun` returns FALSE")
+    stop("ox requires at least two arguments. One to as a replacement when `.f`",
+         " returns TRUE and other (.else) when `.f` returns FALSE")
   }
   args
 }
@@ -50,10 +50,10 @@ args_drop_else <- function(args) {
 #' Get index of an `.else` argument. Returns index of the potential
 #'
 #' @inheritParams which_else
-#' @inheritParams ie
+#' @inheritParams ox
 #' @return `NULL`
-validate_fun_args <- function(fun, args) {
-  frmls <- if (is.primitive(fun)) formals(args(fun)) else formals(fun)
+validate_fun_args <- function(.f, args) {
+  frmls <- if (is.primitive(.f)) formals(args(.f)) else formals(.f)
   extra_args <- setdiff(names(args), names(frmls))
 
   if (length(extra_args[extra_args != ""]) > 0 && !"..." %in% names(frmls)) {

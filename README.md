@@ -1,52 +1,83 @@
-# `ie` short hand if-else.
+# `ox` short hand if-else.
 
-# Motivation
+# <img src="man/figures/logo.jpg" align="right" />
 
-Reason to create this package is to simplify code to check the object and replace
-if it does not match some expectations. Following code illustrates typical 
-situation when x needs to be included in the call twice.
+<!-- badges: start -->
+[![Check and deploy](https://github.com/gogonzo/ie/workflows/Check%20and%20deploy/badge.svg)](https://github.com/gogonzo/ie/actions)
+[![](https://ci.appveyor.com/api/projects/status/github/gogonzo/ie?branch=master&svg=true)](https://ci.appveyor.com/project/gogonzo/ie)
+[![](https://codecov.io/gh/gogonzo/ie/branch/main/graph/badge.svg)](https://codecov.io/gh/gogonzo/ie/branch/main)
+<!-- badges: end -->
+
+### Motivation
+
+Reason to create this package is to simplify the code to check and replace the 
+object if it does not satisfy given assumptions. Following code illustrates
+typical situation when `x` is checked to return `x` (then) or 
+`y` (else).
 ```r
 # basic syntax
 if (fun(x)) x else y
 ```
 
-Real case might look much different where `x` might be a more complicated call.
+### Name
+
+
+### `ox` syntax
+`ox` package offers a different syntax for above base R operation, where `x` is 
+used once in the call. `x` here is a function argument and "then" value in the
+same time.
 ```r
-# possible case 
-x <- seq_len(3)
-if (identical(x[x %% 2 != 0], integer(0))) x[x %% 2 != 0] else 1L
+ox(fun, x, y)
 ```
 
-`ie` package simplifies the above with requirement to include `x` only once in 
-the call. The more complex `x` in the call the bigger benefit to apply `ie` 
-function.  
-```r
-ie(identical, x[x %% 2 != 0], integer(0), 1L)
-```
-
-`ie` works as follows, first argument (`fun`) is function which should return a 
-single logical value. Second argument is considered as a positive-replacement 
-which is returned if function returns `TRUE`. `.else` is a negative-replacement, 
-returned when function returns `FALSE`
+`ox` has three arguments: 
+- `.f`  a function which returns a single logical value
+- `...` named or unnamed arguments to be passed to `.f(...)` to evaluate. First
+argument in `...` is considered as a positive-replacement (then) which is 
+returned if the `.f` returns `TRUE`. 
+- `.else` is a negative-replacement, returned when `.f` returns `FALSE`.
 
 ![](man/figures/ie_uml.jpg)
 
-Single example
+Consider simple example with `base` R and `ox` equivalent.  
 ```r
-ie(is.null, NULL, 1L)
-# NULL
+x <- "a"
+ox(identical, x, "b")
+# [1] "a"
+```
 
-nie(is.null, NULL, 1L)
-# [1] 1
+To invert switching result use `xo`
+```r
+xo(identical, x, "b")
+# [1] "b"
 ```
 
 Multiple arguments examples
 ```r
-# if-else
-ie(grepl, x = "some text", pattern = "word", .else = "does not contain a word")
-# [1] "doesn't contain a word"
+ox(is, "text", "character", .else = "not a character")
+# [1] "text"
 
-# negative if-else
-nie(grepl, x = "some text", pattern = "word", .else = "does not contain a word")
-# [1] "some text"
+xo(is, "text", "character", .else = "not a character")
+# [1] "not a character"
+```
+
+### pipe operators
+Syntax is also optimized to use pipe operators. For `magrittr::%>%` it's very 
+convenient as one can use `.`. With `|>` one needs to specify `.f = <fun>` and 
+`x` will go to the `ox` as first argument.
+```r
+library(magrittr)
+x <- "text"
+
+x %>% ox(is, object = ., "character", "not a character")
+# [1] text
+
+x %>% ox(is, ., "character", "not a character")
+# [1] text
+
+x %>% ox(.f = is, "character", "not a character")
+# [1] text
+
+x |> ox(.f = is, "character", "not a character")
+# [1] text
 ```
