@@ -1,2 +1,2 @@
-library(xo)
-testthat::test_check("xo")
+library(ox)
+testthat::test_check("ox")
