@@ -3,10 +3,17 @@
 # <img src="man/figures/logo.jpg" align="right" />
 
 <!-- badges: start -->
-[![Check and deploy](https://github.com/gogonzo/ie/workflows/Check%20and%20deploy/badge.svg)](https://github.com/gogonzo/ie/actions)
-[![](https://ci.appveyor.com/api/projects/status/github/gogonzo/ie?branch=master&svg=true)](https://ci.appveyor.com/project/gogonzo/ie)
-[![](https://codecov.io/gh/gogonzo/ie/branch/main/graph/badge.svg)](https://codecov.io/gh/gogonzo/ie/branch/main)
+[![Check and deploy](https://github.com/gogonzo/ox/workflows/Check%20and%20deploy/badge.svg)](https://github.com/gogonzo/ox/actions)
+[![](https://ci.appveyor.com/api/projects/status/github/gogonzo/ox?branch=master&svg=true)](https://ci.appveyor.com/project/gogonzo/ox)
+[![](https://codecov.io/gh/gogonzo/ox/branch/main/graph/badge.svg)](https://codecov.io/gh/gogonzo/ox/branch/main)
 <!-- badges: end -->
+
+### Name
+
+Symbolically, letter "O" and letter "X" represents opposite characteristics. 
+Usually, "O" is associated with something positive while "X" symbolizes rejection.
+This summarizes the meaning of the `ox::ox` which manages switching two values 
+based on the TRUE/FALSE condition.
 
 ### Motivation
 
@@ -18,9 +25,6 @@ typical situation when `x` is checked to return `x` (then) or
 # basic syntax
 if (fun(x)) x else y
 ```
-
-### Name
-
 
 ### `ox` syntax
 `ox` package offers a different syntax for above base R operation, where `x` is 

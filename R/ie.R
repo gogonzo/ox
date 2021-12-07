@@ -1,6 +1,6 @@
 #' Short hand if-else
 #'
-#' Short hand if-else functions for simple values switching.
+#' Short hand if-else function for simple values switching.
 #' @param .f (`function`) evaluated as `.f(...)`. Must return single logical value
 #' @param ...  arguments passed to the `.f`. First element of `...` will be
 #'   considered as a positive-replacement (so called "then").
