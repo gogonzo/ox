@@ -24,7 +24,7 @@ directly by naming argument then the last unnamed argument (from \code{...}) wil
 be considered as a replacement (it will not be used in the \code{.f}).}
 }
 \description{
-Short hand if-else functions for simple values switching.
+Short hand if-else function for simple values switching.
 
 Short hand if-else functions for simple values switching.
 }
