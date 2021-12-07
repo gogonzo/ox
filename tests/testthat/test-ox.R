@@ -3,75 +3,62 @@ fun <- function(xx, test, ...) {
   FALSE
 }
 
-testthat::test_that("ox returns input when condition is TRUE - only two args", {
-  testthat::expect_identical(ox(isTRUE, TRUE, character(0)), TRUE)
+testthat::test_that("ox returns .then when condition is TRUE - only two args", {
   testthat::expect_identical(ox(isTRUE, TRUE, .else = character(0)), TRUE)
 })
 
 testthat::test_that("xo returns .else when condition is FALSE - only two args", {
-  testthat::expect_identical(ox(isTRUE, FALSE, character(0)), character(0))
   testthat::expect_identical(ox(isTRUE, FALSE, .else = character(0)), character(0))
 })
 
-testthat::test_that("fun is called with all arguments except .else which is returned", {
-  testthat::expect_message(
-    testthat::expect_identical(ox(fun, 1, 2, 3, 4, 5, .else = 6), 6),
-    "12345"
-  )
-  testthat::expect_message(
-    testthat::expect_identical(ox(.else = 6, fun, 1, 2, 3, 4, 5), 6),
-    "12345"
-  )
-  testthat::expect_message(
-    testthat::expect_identical(ox(fun, 1, 2, .else = 6, 3, 4, 5), 6),
-    "12345"
-  )
-})
-
-testthat::test_that("fun is called with all arguments except latest unnamed arg (.else)", {
+testthat::test_that("fun is called with all arguments - latest as .else", {
   testthat::expect_message(
     testthat::expect_identical(ox(fun, 1, 2, 3, 4, 5, 6), 6),
-    "12345"
-  )
-  testthat::expect_message(
-    testthat::expect_identical(ox(fun, xx = 1, test = 2, a = 3, b = 4, 6, c = 5), 6),
-    "12345"
-  )
-
-  testthat::expect_message(
-    testthat::expect_identical(ox(fun, xx = 1, test = 2, 3, b = 4, 6, c = 5), 6),
-    "12345"
+    "123456"
   )
 })
 
-testthat::test_that("fun is called with following args order: x, test, ... (except the last unnamed - .else)", {
+testthat::test_that("fun is called with all arguments - first as .then", {
   testthat::expect_message(
-    testthat::expect_identical(ox(fun, xx = 1, z = 2, test = 3, 4, 6, a = 5), 6),
-    "13245"
+    testthat::expect_identical(ox(Negate(fun), 1, 2, 3, 4, 5, 6), 1),
+    "123456"
   )
 })
 
-testthat::test_that("xo throws an error when extra argument is added", {
-  testthat::expect_error(
-    ox(isTRUE, x = 1, .else = 2, extra = 3),
-    "provided function does not accept following"
+testthat::test_that("fun is called with all arguments except .else and .then, returns .else", {
+  testthat::expect_message(
+    testthat::expect_identical(ox(fun, 1, .then = 2, 3, 4, 5, .else = 6), 6),
+    "1345"
+  )
+  testthat::expect_message(
+    testthat::expect_identical(ox(.else = 6, fun, .then = 1, 2, 3, 4, 5), 6),
+    "2345"
+  )
+  testthat::expect_message(
+    testthat::expect_identical(ox(fun, 1, 2, .else = 6, 3, 4, .then = 5), 6),
+    "1234"
   )
 })
 
-testthat::test_that("xo throws an error when only one argument added", {
-  testthat::expect_error(
-    ox(isTRUE, x = 1),
-    "All arguments are named and .else is not among them. Please specify .else"
+testthat::test_that("fun is called with all arguments except .else and .then, returns .then", {
+  fum <- Negate(fun)
+  testthat::expect_message(
+    testthat::expect_identical(ox(fum, 1, .then = 2, 3, 4, 5, .else = 6), 2),
+    "1345"
   )
-  testthat::expect_error(
-    ox(isTRUE, .else = 1),
-    "ox requires at least two arguments. One to"
+  testthat::expect_message(
+    testthat::expect_identical(ox(.else = 6, fum, .then = 1, 2, 3, 4, 5), 1),
+    "2345"
+  )
+  testthat::expect_message(
+    testthat::expect_identical(ox(fum, 1, 2, .else = 6, 3, 4, .then = 5), 5),
+    "1234"
   )
 })
 
 testthat::test_that("xo is identical to negate ox", {
   testthat::expect_identical(
-    ox(Negate(isTRUE), TRUE, character(0)),
-    xo(isTRUE, TRUE, character(0))
+    ox(Negate(isTRUE), TRUE, .else = character(0)),
+    xo(isTRUE, TRUE, .else = character(0))
   )
 })

@@ -19,50 +19,57 @@ based on the TRUE/FALSE condition.
 
 Reason to create this package is to simplify the code to check and replace the 
 object if it does not satisfy given assumptions. Following code illustrates
-typical situation when `x` is checked to return `x` (then) or 
-`y` (else).
+typical situation when `x` is checked (possibly against `y`) to return `x` 
+or `y`.
 ```r
 # basic syntax
-if (fun(x)) x else y
+if (is.fun(x)) x else y
+if (fun(x, y, ...)) x else y
 ```
 
-### `ox` syntax
-`ox` package offers a different syntax for above base R operation, where `x` is 
-used once in the call. `x` here is a function argument and "then" value in the
-same time.
+`ox` package offers a different syntax for above base R calls, where `x` and
+`y` can be used once in the call to produce the same output.
 ```r
+ox(fun, x, .else = y)
 ox(fun, x, y)
 ```
 
-`ox` has three arguments: 
-- `.f`  a function which returns a single logical value
-- `...` named or unnamed arguments to be passed to `.f(...)` to evaluate. First
-argument in `...` is considered as a positive-replacement (then) which is 
-returned if the `.f` returns `TRUE`. 
-- `.else` is a negative-replacement, returned when `.f` returns `FALSE`.
+### `ox` syntax
 
-![](man/figures/ie_uml.jpg)
+`ox` has four arguments: 
+- `.f`  a function which returns a single logical value.
+- `...` named or unnamed arguments to be passed to `.f(...)` to evaluate.
+- `.then` is a positive-replacement, returned when `.f` returns `TRUE`. 
+By default, it's the first argument from `...`.
+- `.elselse` is a negative-replacement, returned when `.f` returns `FALSE`.
+By default, it's the last argument from `...`.
 
-Consider simple example with `base` R and `ox` equivalent.  
+![](man/figures/uml1.jpg)
+
+Consider simple where `x` checked if it's a character. If condition is `TRUE`
+`ox` returns `x` (`.then`) otherwise `.else`. Since `.then` has not been 
+specified directly `object = x` is considered as a default value to return when
+`.f` returns `TRUE`. In this example `x` is a argument of `.f` and is returned
+as `.then` in the same time.
+
 ```r
 x <- "a"
-ox(identical, x, "b")
+y <- "b"
+
+ox(.f = is, object = x, class2 = "character", .else = "b")
 # [1] "a"
 ```
 
-To invert switching result use `xo`
+Another example illustrates the comparison between two values and return one 
+matching the condition. In this case `y` is greater than `x` so it's returned.
+Both `x` and `y` are used in the function and returned as `.then` and `.else` in
+the same time.
 ```r
-xo(identical, x, "b")
-# [1] "b"
-```
+x <- 1
+y <- 2
 
-Multiple arguments examples
-```r
-ox(is, "text", "character", .else = "not a character")
-# [1] "text"
-
-xo(is, "text", "character", .else = "not a character")
-# [1] "not a character"
+ox(`>`, x, y)
+# [1] 2
 ```
 
 ### pipe operators
@@ -71,17 +78,26 @@ convenient as one can use `.`. With `|>` one needs to specify `.f = <fun>` and
 `x` will go to the `ox` as first argument.
 ```r
 library(magrittr)
-x <- "text"
+x <- 4
 
-x %>% ox(is, object = ., "character", "not a character")
-# [1] text
+x %>% ox(.f = `>`, 5)
+# [1] 5
 
-x %>% ox(is, ., "character", "not a character")
-# [1] text
+x %>% ox(`>`, ., 5)
+# [1] 5
 
-x %>% ox(.f = is, "character", "not a character")
-# [1] text
-
-x |> ox(.f = is, "character", "not a character")
-# [1] text
+x |> ox(.f = `>`, 5)
+# [1] 5
 ```
+
+# vectorized `OX`
+Instead of replacing `x` with some specific object one can also replace values
+of the `x` for elements of the `x` matching a condition
+```r
+x <- c(NA, 1, NA)
+y <- c(1, 2, 3)
+
+# equivalent
+x <- XO(is.na, x, .else = y)
+```
+![](man/figures/uml2.jpg)
