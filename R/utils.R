@@ -67,7 +67,7 @@ validate_f_out.logical <- function(idx, len) {
 #' Checks if .then and .else are fine. If they have supported classes and
 #' if their length is the same.
 #' @inheritParams vectorized-ox
-check_thenelse_OX <- function(.then, .else) {
+check_thenelse_OX <- function(.then, .else) { # nolint
   if (!inherits(.then, c("list", "logical", "integer", "numeric", "character", "factor"))) {
     stop("`.then` specified as: ", paste(class(.then), collapse = " "),
     "\n  OX accepts only atomic vectors and lists", call. = FALSE)
