@@ -61,8 +61,14 @@ testthat::test_that("check_thenelse_OX throw when lenths differ and .then is len
 })
 
 testthat::test_that("check_thenelse_OX throw when .then or .else are not atomic or list", {
-  expect_error(check_thenelse_OX(c(1, 2), matrix(1)), "`.else`.+matrix array")
-  expect_error(check_thenelse_OX(matrix(1), c(1, 2)), "`.then`.+matrix array")
+  if (R.version$major > 4) {
+    expect_error(check_thenelse_OX(c(1, 2), matrix(1)), "`.else`.+matrix array")
+    expect_error(check_thenelse_OX(matrix(1), c(1, 2)), "`.then`.+matrix array")
+  } else {
+    expect_error(check_thenelse_OX(c(1, 2), matrix(1)), "`.else`.+matrix")
+    expect_error(check_thenelse_OX(matrix(1), c(1, 2)), "`.then`.+matrix")
+  }
+
 })
 
 testthat::test_that("invert_indices inverts logical indices", {

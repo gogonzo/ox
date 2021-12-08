@@ -86,7 +86,7 @@ check_thenelse_OX <- function(.then, .else) {
   }
 }
 
-#' Indices invertion
+#' Indices inversion
 #'
 #' Inverts the indices to select the rest. For example when `idx` is `logical`
 #' then `[!idx]`, if `integer` then `[-idx]`

@@ -8,7 +8,9 @@ Description: Short hand if-else function to easily switch the values depending
   on a conditions.
 License: GPL (>= 2)
 Encoding: UTF-8
+Language: en-US
 LazyData: true
+Depends: R (>= 3.0)
 Imports:
   utils
 Suggests:

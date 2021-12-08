@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{invert_indices}
 \alias{invert_indices}
-\title{Indices invertion}
+\title{Indices inversion}
 \usage{
 invert_indices(idx)
 }
