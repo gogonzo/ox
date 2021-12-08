@@ -13,23 +13,24 @@ OX_default(
 )
 }
 \arguments{
-\item{.f}{(\code{function}) evaluated as \code{.f(...)}. Must return a vector of
-indices, which defines elements which values will be replaced by \code{.else}.}
+\item{.f}{(\code{function})\cr
+evaluated as \code{.f(...)}. Must return a vector of indices (\code{logical} or \code{integer}),
+which defines which values will be replaced by \code{.else}.}
 
 \item{...}{arguments passed to the \code{.f}.}
 
-\item{.then}{positive-replacement. NOTE, that if \code{.then} is not specified
-directly by named argument then the first argument from \code{...} will
-be taken.}
+\item{.then}{(\code{list}, \code{atomic}, \code{NULL})\cr
+A positive-replacement.
+NOTE, that if \code{.then} is not specified directly by named argument then the
+first argument from \code{...} will be taken.}
 
-\item{.else}{negative-replacement. NOTE, that if \code{.else} is not specified
-directly by named argument then the last argument from \code{...} will
-be considered as a replacement.}
+\item{.else}{(\code{list}, \code{atomic}, \code{NULL})\cr
+A negative-replacement. Should be of length equal to length of \code{.then}, or
+single value or \code{NULL}.
+NOTE, that if \code{.else} is not specified directly by named argument then the
+last argument from \code{...} will be considered as a replacement.}
 
 \item{.invert}{(\code{logical(1)})}
-}
-\value{
-
 }
 \description{
 Utility function to run OX

@@ -2,9 +2,19 @@
 #' @title Vectorized `ox`
 #'
 #' @description Switch the values of the vector by another on specific indices.
-#' @param .f (`function`) evaluated as `.f(...)`. Must return a vector of
-#' indices, which defines elements which values will be replaced by `.else`.
 #' @inheritParams ox
+#' @param .f (`function`)\cr
+#'  evaluated as `.f(...)`. Must return a vector of indices (`logical` or `integer`),
+#'  which defines which values will be replaced by `.else`.
+#' @param .then (`list`, `atomic`, `NULL`)\cr
+#'  A positive-replacement.
+#'  NOTE, that if `.then` is not specified directly by named argument then the
+#'  first argument from `...` will be taken.
+#' @param .else (`list`, `atomic`, `NULL`)\cr
+#'  A negative-replacement. Should be of length equal to length of `.then`, or
+#'  single value or `NULL`.
+#'  NOTE, that if `.else` is not specified directly by named argument then the
+#'  last argument from `...` will be considered as a replacement.
 #'
 #' @details
 #'
@@ -14,11 +24,15 @@
 #' #' `OX` evaluates function `.f` which returns a vector of indices which
 #' are then decide which values of `.then` are replaced by `else`.
 #' ```
-#' .then[idx] <- .else[idx]
+#' .then[!idx] <- .else[!idx]
 #' ```
-#' Consequence of above is that `idx = .f(...)` should be a logical vector of
-#' the same length as `.then`, or integer vector of length `< length(.then)`.
-#' Length of `.then` should be also the same as length of `.else`
+#' Consequence of above is that `idx = .f(...)` should be a `logical` vector or
+#' `integer` vector which would be valid indices for `.then` and `.else`.
+#' This means that `.then` and `.else` should be of the same length, but there
+#' are two exceptions:
+#' * when `.else` is a single value, than this value will replace `.then` at
+#' returned indices `.then[!idx] <- .else`
+#' * when `.else` is `NULL`
 #'
 #' To invert the switch one can use `XO` which is equivalent of
 #' `OX(Negate(.f), ..., .then, .else)`.
@@ -26,14 +40,12 @@
 #' @examples
 #' # switch values of vector by
 #' OX(is.na, c(1, NA, 3), .else = c(2, 2, 2))
-#' @return object (`atomic`, `list`) - `.then` with values replaced by `.else`
-#' when condition was `FALSE`.
+#' @return object (`atomic`, `list`) - same object as `.then` with values
+#' replaced by `.else`.
 #' @export
 OX <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]]) {
   OX_default(.f = .f, ..., .then = .then,.else = .else, .invert = TRUE)
 }
-
-
 
 #' @rdname vectorized-ox
 #' @examples
@@ -43,12 +55,10 @@ XO <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]]) {
   OX_default(.f = .f, ..., .then = .then,.else = .else, .invert = FALSE)
 }
 
-
 #' Utility function to run OX
 #'
 #' @inheritParams vectorized-ox
 #' @param .invert (`logical(1)`)
-#' @return
 OX_default <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]], .invert = FALSE) {
   check_thenelse_OX(.then, .else)
   fun_args <- list(...)
@@ -65,4 +75,3 @@ OX_default <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[
   }
   .then
 }
-

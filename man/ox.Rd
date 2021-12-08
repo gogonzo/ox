@@ -10,16 +10,16 @@ ox(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]])
 xo(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]])
 }
 \arguments{
-\item{.f}{(\code{function}) to be applied on  \code{...}. Must return single logical
-value.}
+\item{.f}{(\code{function})\cr
+to be applied on  \code{...}. Must return single logical value.}
 
 \item{...}{arguments passed to the \code{.f}.}
 
-\item{.then}{positive-replacement. NOTE, that if \code{.then} is not specified
+\item{.then}{A positive-replacement. NOTE, that if \code{.then} is not specified
 directly by named argument then the first argument from \code{...} will
 be taken.}
 
-\item{.else}{negative-replacement. NOTE, that if \code{.else} is not specified
+\item{.else}{A negative-replacement. NOTE, that if \code{.else} is not specified
 directly by named argument then the last argument from \code{...} will
 be considered as a replacement.}
 }

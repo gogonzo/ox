@@ -11,22 +11,26 @@ OX(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]])
 XO(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]])
 }
 \arguments{
-\item{.f}{(\code{function}) evaluated as \code{.f(...)}. Must return a vector of
-indices, which defines elements which values will be replaced by \code{.else}.}
+\item{.f}{(\code{function})\cr
+evaluated as \code{.f(...)}. Must return a vector of indices (\code{logical} or \code{integer}),
+which defines which values will be replaced by \code{.else}.}
 
 \item{...}{arguments passed to the \code{.f}.}
 
-\item{.then}{positive-replacement. NOTE, that if \code{.then} is not specified
-directly by named argument then the first argument from \code{...} will
-be taken.}
+\item{.then}{(\code{list}, \code{atomic}, \code{NULL})\cr
+A positive-replacement.
+NOTE, that if \code{.then} is not specified directly by named argument then the
+first argument from \code{...} will be taken.}
 
-\item{.else}{negative-replacement. NOTE, that if \code{.else} is not specified
-directly by named argument then the last argument from \code{...} will
-be considered as a replacement.}
+\item{.else}{(\code{list}, \code{atomic}, \code{NULL})\cr
+A negative-replacement. Should be of length equal to length of \code{.then}, or
+single value or \code{NULL}.
+NOTE, that if \code{.else} is not specified directly by named argument then the
+last argument from \code{...} will be considered as a replacement.}
 }
 \value{
-object (\code{atomic}, \code{list}) - \code{.then} with values replaced by \code{.else}
-when condition was \code{FALSE}.
+object (\code{atomic}, \code{list}) - same object as \code{.then} with values
+replaced by \code{.else}.
 }
 \description{
 Switch the values of the vector by another on specific indices.
@@ -36,12 +40,18 @@ Switch the values of the vector by another on specific indices.
 \if{latex}{\figure{uml2.jpg}{options: width=7cm}}
 
 #' \code{OX} evaluates function \code{.f} which returns a vector of indices which
-are then decide which values of \code{.then} are replaced by \verb{else}.\preformatted{.then[idx] <- .else[idx]
+are then decide which values of \code{.then} are replaced by \verb{else}.\preformatted{.then[!idx] <- .else[!idx]
 }
 
-Consequence of above is that \code{idx = .f(...)} should be a logical vector of
-the same length as \code{.then}, or integer vector of length \verb{< length(.then)}.
-Length of \code{.then} should be also the same as length of \code{.else}
+Consequence of above is that \code{idx = .f(...)} should be a \code{logical} vector or
+\code{integer} vector which would be valid indices for \code{.then} and \code{.else}.
+This means that \code{.then} and \code{.else} should be of the same length, but there
+are two exceptions:
+\itemize{
+\item when \code{.else} is a single value, than this value will replace \code{.then} at
+returned indices \code{.then[!idx] <- .else}
+\item when \code{.else} is \code{NULL}
+}
 
 To invert the switch one can use \code{XO} which is equivalent of
 \code{OX(Negate(.f), ..., .then, .else)}.

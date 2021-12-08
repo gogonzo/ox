@@ -1,6 +1,6 @@
 # `ox` short hand if-else.
 
-# <img src="man/figures/logo.jpg" align="right" />
+# <img src="man/figures/logo.png" align="right" />
 
 <!-- badges: start -->
 [![Check and deploy](https://github.com/gogonzo/ox/workflows/Check%20and%20deploy/badge.svg)](https://github.com/gogonzo/ox/actions)
@@ -90,14 +90,59 @@ x |> ox(.f = `>`, 5)
 # [1] 5
 ```
 
-# vectorized `OX`
-Instead of replacing `x` with some specific object one can also replace values
-of the `x` for elements of the `x` matching a condition
+## vectorized `OX`
+
+![](man/figures/uml2.jpg)
+
+`ox` version for switching vector values instead of switching single-objects one
+can use `OX`. `OX` replaces values of the `.then` with values of `.else` when 
+condition is `FALSE`. `.else` should be a `atomic` or a `list`. Function `.f` 
+in `OX` can return `logical` vector or `integer` which determines indices of
+`.then` to be kept or replaced.
+
+#### 1. Replacing values of `.then` with single value
+
+When `.else` is a vector, the values of `.then` are replaced by the values of
+`.else` on the same indices - `.then[!idx] <- .else[!idx]`
+```r
+# pick larger values from two vectors
+OX(`>`, c(1, 2, 3), c(3, 2, 1))
+# [1] 3 2 3
+```
+
+When `.else` is a single value, the values of `.then` are replaced by this value -
+`.then[!idx] <- .else`
+
 ```r
 x <- c(NA, 1, NA)
-y <- c(1, 2, 3)
-
-# equivalent
-x <- XO(is.na, x, .else = y)
+OX(Negate(is.na), x, .else = 2)
+# [1] 2 1 2
 ```
-![](man/figures/uml2.jpg)
+
+When `.else` is NULL, the values of `.then` are dropped from the object - 
+`.then <- .then[idx]`
+
+```r
+# drop values from `.then` is `FALSE`
+OX(`>`, c(-1, 0, 1), 0, .else = NULL)
+# [1] 1
+```
+
+### Inverting the results
+Both functions `ox` and `OX` have it's opposite versions - `xo` and `XO`, which
+are switching the result of the condition.
+
+```r
+identical(
+  ox(Negate(is.na), NA, .else = 1)
+  xo(is.na, NA, .else = 1)
+)
+# [1] TRUE
+
+xo(is.na, NA, .else = 1)
+# [1] 1
+
+XO(is.na, c(NA, NA, 2), .else = 1)
+# [1] 1 1 2
+```
+

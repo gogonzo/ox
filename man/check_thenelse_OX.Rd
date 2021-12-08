@@ -6,6 +6,18 @@
 \usage{
 check_thenelse_OX(.then, .else)
 }
+\arguments{
+\item{.then}{(\code{list}, \code{atomic}, \code{NULL})\cr
+A positive-replacement.
+NOTE, that if \code{.then} is not specified directly by named argument then the
+first argument from \code{...} will be taken.}
+
+\item{.else}{(\code{list}, \code{atomic}, \code{NULL})\cr
+A negative-replacement. Should be of length equal to length of \code{.then}, or
+single value or \code{NULL}.
+NOTE, that if \code{.else} is not specified directly by named argument then the
+last argument from \code{...} will be considered as a replacement.}
+}
 \description{
 Checks if .then and .else are fine. If they have supported classes and
 if their length is the same.

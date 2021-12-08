@@ -1,13 +1,13 @@
 #' Short hand if-else
 #'
 #' Short hand if-else functions for simple values switching.
-#' @param .f (`function`) to be applied on  `...`. Must return single logical
-#'  value.
+#' @param .f (`function`)\cr
+#' to be applied on  `...`. Must return single logical value.
 #' @param ...  arguments passed to the `.f`.
-#' @param .then positive-replacement. NOTE, that if `.then` is not specified
+#' @param .then A positive-replacement. NOTE, that if `.then` is not specified
 #'  directly by named argument then the first argument from `...` will
 #'  be taken.
-#' @param .else negative-replacement. NOTE, that if `.else` is not specified
+#' @param .else A negative-replacement. NOTE, that if `.else` is not specified
 #'  directly by named argument then the last argument from `...` will
 #'  be considered as a replacement.
 #'
