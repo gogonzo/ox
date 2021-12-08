@@ -81,7 +81,7 @@ y <- "a"
 ox(function(x) is.character(x) && length(x) == 1, x, .else = y)
 ```
 
-### combining with checkmate
+### combining with `checkmate`
 ```{r}
 x <- c("a", "b")
 y <- "a"
@@ -90,7 +90,7 @@ y <- "a"
 ox(checkmate::test_character, x, len = 2, .else = y)
 ```
 
-### using magrittr pipe
+### using `magrittr` pipe
 ```{r}
 library(magrittr)
 x <- "a"
@@ -149,7 +149,7 @@ x <- list(1, 2, 3, 4)
 OX(`>`, x, 2, .else = NULL)
 ```
 
-### replace values with `dplyr::mutate`
+### Replace values with `dplyr::mutate`
 ```{r}
 library(dplyr)
 iris %>%
