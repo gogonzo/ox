@@ -4,7 +4,7 @@ author: "Dawid Kałędkowski"
 date: "12/8/2021"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{ox}
+  %\VignetteIndexEntry{ox examples}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
