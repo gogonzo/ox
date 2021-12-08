@@ -7,7 +7,7 @@ toc:
   depth: 3
 
 reference:
-  - title: "Short hand if-else""
+  - title: "Short hand if-else"
     desc: "Switch the values with ease"
     contents:
       - ox
