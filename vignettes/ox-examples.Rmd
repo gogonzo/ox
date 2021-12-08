@@ -78,7 +78,7 @@ x <- c("a", "b")
 y <- "a"
 
 # if (is.character(x) && length(x) == 1) x else y
-ox(\(x) is.character(x) && length(x) == 1, x, .else = y)
+ox(function(x) is.character(x) && length(x) == 1, x, .else = y)
 ```
 
 ### combining with checkmate
@@ -145,7 +145,7 @@ OX(`>`, x, 2, .else = NULL)
 ```{r}
 x <- list(1, 2, 3, 4)
 
-# x[vapply(x, \(xx) xx > 2, logical(1))]
+# x[vapply(x, function(xx) xx > 2, logical(1))]
 OX(`>`, x, 2, .else = NULL)
 ```
 
