@@ -62,22 +62,43 @@ validate_f_out.logical <- function(idx, len) {
   idx
 }
 
-
+#' Checks .then and .else for OX
+#'
+#' Checks if .then and .else are fine. If they have supported classes and
+#' if their length is the same.
 check_thenelse_OX <- function(.then, .else) {
   if (!inherits(.then, c("list", "logical", "integer", "numeric", "character", "factor"))) {
     stop("`.then` specified as: ", paste(class(.then), collapse = " "),
     "\n  OX accepts only atomic vectors and lists", call. = FALSE)
   }
 
-  if (!inherits(.else, c("list", "logical", "integer", "numeric", "character", "factor"))) {
+  if (!inherits(.else, c("list", "logical", "integer", "numeric", "character", "factor", "NULL"))) {
     stop("`.else` specified as: ", paste(class(.else), collapse = " "),
          "\n  OX accepts only atomic vectors and lists", call. = FALSE)
   }
 
-  if (length(.then) != length(.else)) {
+  if (length(.then) != length(.else) && length(.else) > 1) {
     stop("Different length of `.then` and `.else`: ",
          length(.then), "!=", length(.else),
          "\n  Can't replace values of `.then` by values of `.else`",
          call. = FALSE)
+  }
+}
+
+
+#' Indices invertion
+#'
+#' Inverts the indices to select the rest. For example when `idx` is `logical`
+#' then `[!idx]`, if `integer` then `[-idx]`
+#'
+#' @inheritParams validate_f_out
+#' @return same class as `idx`
+invert_indices <- function(idx) {
+  if (is.logical(idx)) {
+    !idx
+  } else if (is.integer(idx)) {
+    -idx
+  } else {
+    stop("only integer and logical values possible for indices.")
   }
 }

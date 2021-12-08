@@ -24,6 +24,10 @@ be taken.}
 directly by named argument then the last argument from \code{...} will
 be considered as a replacement.}
 }
+\value{
+object (\code{atomic}, \code{list}) - \code{.then} with values replaced by \code{.else}
+when condition was \code{FALSE}.
+}
 \description{
 Switch the values of the vector by another on specific indices.
 }
