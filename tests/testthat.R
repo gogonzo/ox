@@ -1,2 +1,2 @@
-library(ie)
-testthat::test_check("ie")
+library(ox)
+testthat::test_check("ox")
