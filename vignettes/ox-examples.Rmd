@@ -83,11 +83,12 @@ ox(function(x) is.character(x) && length(x) == 1, x, .else = y)
 
 ### combining with `checkmate`
 ```{r}
+library(checkmate)
 x <- c("a", "b")
 y <- "a"
 
-# if (checkmate::test_character(x, len = 2)) x else y
-ox(checkmate::test_character, x, len = 2, .else = y)
+# if (test_character(x, len = 2)) x else y
+ox(test_character, x, len = 2, .else = y)
 ```
 
 ### using `magrittr` pipe
@@ -153,8 +154,8 @@ OX(`>`, x, 2, .else = NULL)
 ```{r}
 library(dplyr)
 iris %>%
-  dplyr::mutate(x = ifelse(Sepal.Length > Petal.Length, Sepal.Length, Petal.Length))
+  mutate(x = ifelse(Sepal.Length > Petal.Length, Sepal.Length, Petal.Length))
 
 iris %>% 
-  dplyr::mutate(x = OX(`>`, Sepal.Length, Petal.Length))
+  mutate(x = OX(`>`, Sepal.Length, Petal.Length))
 ```
