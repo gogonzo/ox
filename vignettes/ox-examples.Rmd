@@ -156,6 +156,5 @@ library(dplyr)
 iris %>%
   mutate(x = ifelse(Sepal.Length > Petal.Length, Sepal.Length, Petal.Length))
 
-iris %>% 
-  mutate(x = OX(`>`, Sepal.Length, Petal.Length))
+iris %>% mutate(x = OX(`>`, Sepal.Length, Petal.Length))
 ```
