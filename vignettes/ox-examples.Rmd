@@ -1,7 +1,7 @@
 ---
 title: "ox examples"
 author: "Dawid Kałędkowski"
-date: "12/8/2021"
+date: "12/9/2021"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{ox examples}
