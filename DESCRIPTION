@@ -1,6 +1,6 @@
 Package: ox
 Type: Package
-Title: Shorthand if-else
+Title: Shorthand if-Else
 Version: 0.1.0
 Authors@R: person("Dawid", "Kałędkowski", 
                   email = "dawid.kaledkowski@gmail.com",
@@ -13,17 +13,15 @@ License: GPL (>= 2)
 BugReports: https://github.com/gogonzo/ox/issues
 Encoding: UTF-8
 Language: en-US
-LazyData: true
 Depends: R (>= 3.0)
-Imports:
-  utils
 Suggests:
   checkmate,
   dplyr,
   magrittr,
   knitr,
   rmarkdown,
-  testthat
+  testthat,
+  utils
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 VignetteBuilder: knitr
