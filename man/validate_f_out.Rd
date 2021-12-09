@@ -17,3 +17,4 @@ validate_f_out(idx, len)
 \description{
 Checks whether \code{.f} has needed length
 }
+\keyword{internal}

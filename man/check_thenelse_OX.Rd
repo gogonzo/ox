@@ -22,3 +22,4 @@ last argument from \code{...} will be considered as a replacement.}
 Checks if .then and .else are fine. If they have supported classes and
 if their length is the same.
 }
+\keyword{internal}

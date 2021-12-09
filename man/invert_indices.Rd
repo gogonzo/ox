@@ -16,3 +16,4 @@ same class as \code{idx}
 Inverts the indices to select the rest. For example when \code{idx} is \code{logical}
 then \verb{[!idx]}, if \code{integer} then \verb{[-idx]}
 }
+\keyword{internal}

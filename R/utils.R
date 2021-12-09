@@ -4,6 +4,7 @@
 #' @param idx (`logical`, `integer`)
 #' @param len (`integer`) length of `.then`
 #' @return `idx` if `logical` and `unique(idx)` if numeric.
+#' @keywords internal
 validate_f_out <- function(idx, len) {
   if (is.null(idx)) {
     stop("`.f(...)` returned NULL.",
@@ -67,6 +68,7 @@ validate_f_out.logical <- function(idx, len) {
 #' Checks if .then and .else are fine. If they have supported classes and
 #' if their length is the same.
 #' @inheritParams vectorized-ox
+#' @keywords internal
 check_thenelse_OX <- function(.then, .else) { # nolint
   if (!inherits(.then, c("list", "logical", "integer", "numeric", "character", "factor"))) {
     stop("`.then` specified as: ", paste(class(.then), collapse = " "),
@@ -93,6 +95,7 @@ check_thenelse_OX <- function(.then, .else) { # nolint
 #'
 #' @inheritParams validate_f_out
 #' @return same class as `idx`
+#' @keywords internal
 invert_indices <- function(idx) {
   if (is.logical(idx)) {
     !idx
