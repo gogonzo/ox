@@ -43,23 +43,24 @@
 #' @return object (`atomic`, `list`) - same object as `.then` with values
 #' replaced by `.else`.
 #' @export
-OX <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]]) {
-  OX_default(.f = .f, ..., .then = .then,.else = .else, .invert = TRUE)
+OX <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]]) { # nolint
+  OX_default(.f = .f, ..., .then = .then, .else = .else, .invert = TRUE)
 }
 
 #' @rdname vectorized-ox
 #' @examples
 #' XO(is.na, c(1, NA, 3), .else = c(2, 2, 2))
 #' @export
-XO <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]]) {
-  OX_default(.f = .f, ..., .then = .then,.else = .else, .invert = FALSE)
+XO <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]]) { # nolint
+  OX_default(.f = .f, ..., .then = .then, .else = .else, .invert = FALSE)
 }
 
 #' Utility function to run OX
 #'
 #' @inheritParams vectorized-ox
 #' @param .invert (`logical(1)`)
-OX_default <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]], .invert = FALSE) {
+#' @keywords internal
+OX_default <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]], .invert = FALSE) { # nolint
   check_thenelse_OX(.then, .else)
   fun_args <- list(...)
   out <- do.call(what = .f, args = fun_args)

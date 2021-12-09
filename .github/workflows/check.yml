@@ -4,6 +4,25 @@ on:
     branches-ignore:
       - main
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-r@v1
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v1
+        with:
+          extra-packages: lintr
+
+      - name: Lint
+        run: lintr::lint_package()
+        shell: Rscript {0}
+
   check-r-verse-latest:
     runs-on: ubuntu-18.04
     container: rocker/verse:latest

@@ -1,0 +1,16 @@
+template:
+  params:
+    bootswatch: cerulean
+
+destination: docs
+toc:
+  depth: 3
+
+reference:
+  - title: "Short hand if-else"
+    desc: "Switch the values with ease"
+    contents:
+      - ox
+      - xo
+      - OX
+      - XO

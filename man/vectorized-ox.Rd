@@ -4,7 +4,7 @@
 \alias{vectorized-ox}
 \alias{OX}
 \alias{XO}
-\title{Vectorised \code{ox}}
+\title{Vectorized \code{ox}}
 \usage{
 OX(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]])
 
