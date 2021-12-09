@@ -6,6 +6,7 @@ output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{ox examples}
   %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteDepends{checkmate, dplyr, magrittr}
   \usepackage[utf8]{inputenc}
 ---
 
@@ -79,6 +80,16 @@ y <- "a"
 
 # if (is.character(x) && length(x) == 1) x else y
 ox(function(x) is.character(x) && length(x) == 1, x, .else = y)
+```
+
+### combining with `checkmate`
+```{r}
+library(checkmate)
+x <- c("a", "b")
+y <- "a"
+
+# if (test_character(x, len = 2)) x else y
+ox(test_character, x, len = 2, .else = y)
 ```
 
 ### using `magrittr` pipe
