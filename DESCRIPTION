@@ -1,6 +1,6 @@
 Package: ox
 Type: Package
-Title: Shorthand if-else
+Title: Shorthand if-Else
 Version: 0.1.0
 Authors@R: person("Dawid", "Kałędkowski", 
                   email = "dawid.kaledkowski@gmail.com",
