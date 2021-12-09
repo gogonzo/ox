@@ -13,7 +13,6 @@ License: GPL (>= 2)
 BugReports: https://github.com/gogonzo/ox/issues
 Encoding: UTF-8
 Language: en-US
-LazyData: true
 Depends: R (>= 3.0)
 Suggests:
   checkmate,
