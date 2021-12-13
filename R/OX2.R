@@ -40,8 +40,8 @@
 #' @examples
 #' # switch values of the vector when condition is true
 #' OX(is.na, c(1, NA, 3), .else = c(2, 2, 2))
-#' @return `atomic` or `list`. Returned object is de facto a `.then` object with
-#' elements replaced by `.else` depending on a result of the logical condition.
+#' @return `atomic` or `list`. Returned object is a `.then` object with elements
+#' replaced by `.else` depending on a result of the logical condition.
 #' @export
 OX <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]]) { # nolint
   OX_default(.f = .f, ..., .then = .then, .else = .else, .invert = TRUE)

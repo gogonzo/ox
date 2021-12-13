@@ -29,8 +29,8 @@ NOTE, that if \code{.else} is not specified directly by named argument then the
 last argument from \code{...} will be considered as a replacement.}
 }
 \value{
-\code{atomic} or \code{list}. Returned object is de facto a \code{.then} object with
-elements replaced by \code{.else} depending on a result of the logical condition.
+\code{atomic} or \code{list}. Returned object is a \code{.then} object with elements
+replaced by \code{.else} depending on a result of the logical condition.
 }
 \description{
 Switch the values of the vector by another on specific indices.
