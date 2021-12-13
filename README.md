@@ -6,7 +6,7 @@
 
 [![Check and
 deploy](https://github.com/gogonzo/ox/workflows/Check%20and%20deploy/badge.svg)](https://github.com/gogonzo/ox/actions)
-[![](https://ci.appveyor.com/api/projects/status/github/gogonzo/ox?branch=master&svg=true)](https://ci.appveyor.com/project/gogonzo/ox)
+[![](https://ci.appveyor.com/api/projects/status/github/gogonzo/ox?branch=main&svg=true)](https://ci.appveyor.com/project/gogonzo/ox)
 [![](https://codecov.io/gh/gogonzo/ox/branch/main/graph/badge.svg)](https://codecov.io/gh/gogonzo/ox/branch/main)
 
 <!-- badges: end -->

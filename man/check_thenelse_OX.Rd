@@ -18,6 +18,9 @@ single value or \code{NULL}.
 NOTE, that if \code{.else} is not specified directly by named argument then the
 last argument from \code{...} will be considered as a replacement.}
 }
+\value{
+\code{NULL} invisible.
+}
 \description{
 Checks if .then and .else are fine. If they have supported classes and
 if their length is the same.

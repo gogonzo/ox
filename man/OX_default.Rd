@@ -30,7 +30,7 @@ single value or \code{NULL}.
 NOTE, that if \code{.else} is not specified directly by named argument then the
 last argument from \code{...} will be considered as a replacement.}
 
-\item{.invert}{(\code{logical(1)})}
+\item{.invert}{(\code{logical(1)}) whether to invert the indices}
 }
 \description{
 Utility function to run OX

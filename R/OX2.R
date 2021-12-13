@@ -38,10 +38,10 @@
 #' `OX(Negate(.f), ..., .then, .else)`.
 #'
 #' @examples
-#' # switch values of vector by
+#' # switch values of the vector when condition is true
 #' OX(is.na, c(1, NA, 3), .else = c(2, 2, 2))
-#' @return object (`atomic`, `list`) - same object as `.then` with values
-#' replaced by `.else`.
+#' @return `atomic` or `list`. Returned object is a `.then` object with elements
+#' replaced by `.else` depending on a result of the logical condition.
 #' @export
 OX <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]]) { # nolint
   OX_default(.f = .f, ..., .then = .then, .else = .else, .invert = TRUE)
@@ -49,6 +49,8 @@ OX <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]]) { #
 
 #' @rdname vectorized-ox
 #' @examples
+#'
+#' # use OX to invert negate the condition
 #' XO(is.na, c(1, NA, 3), .else = c(2, 2, 2))
 #' @export
 XO <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]]) { # nolint
@@ -58,7 +60,7 @@ XO <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]]) { #
 #' Utility function to run OX
 #'
 #' @inheritParams vectorized-ox
-#' @param .invert (`logical(1)`)
+#' @param .invert (`logical(1)`) whether to invert the indices
 #' @keywords internal
 OX_default <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]], .invert = FALSE) { # nolint
   check_thenelse_OX(.then, .else)
