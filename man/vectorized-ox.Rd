@@ -29,8 +29,12 @@ NOTE, that if \code{.else} is not specified directly by named argument then the
 last argument from \code{...} will be considered as a replacement.}
 }
 \value{
-object (\code{atomic}, \code{list}) - same object as \code{.then} with values
-replaced by \code{.else}.
+\code{atomic} or \code{list} of same object as \code{.then} with values
+replaced by \code{.else}. Class of the returned object most likely will be the
+same as \code{.else} when any of the values of \code{.then} will be replaced
+
+\code{atomic} vector or \code{list} of the same length as \code{.then}. Class of the
+returned object depends object
 }
 \description{
 Switch the values of the vector by another on specific indices.

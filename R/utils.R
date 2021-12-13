@@ -68,6 +68,7 @@ validate_f_out.logical <- function(idx, len) {
 #' Checks if .then and .else are fine. If they have supported classes and
 #' if their length is the same.
 #' @inheritParams vectorized-ox
+#' @return `NULL` invisible.
 #' @keywords internal
 check_thenelse_OX <- function(.then, .else) { # nolint
   if (!inherits(.then, c("list", "logical", "integer", "numeric", "character", "factor"))) {
@@ -86,6 +87,7 @@ check_thenelse_OX <- function(.then, .else) { # nolint
          "\n  Can't replace values of `.then` by values of `.else`",
          call. = FALSE)
   }
+  invisible(NULL)
 }
 
 #' Indices inversion
@@ -94,7 +96,7 @@ check_thenelse_OX <- function(.then, .else) { # nolint
 #' then `[!idx]`, if `integer` then `[-idx]`
 #'
 #' @inheritParams validate_f_out
-#' @return same class as `idx`
+#' @return object identival to `idx` input but with inverted values.
 #' @keywords internal
 invert_indices <- function(idx) {
   if (is.logical(idx)) {

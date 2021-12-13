@@ -10,7 +10,7 @@ invert_indices(idx)
 \item{idx}{(\code{logical}, \code{integer})}
 }
 \value{
-same class as \code{idx}
+object identival to \code{idx} input but with inverted values.
 }
 \description{
 Inverts the indices to select the rest. For example when \code{idx} is \code{logical}

@@ -41,6 +41,8 @@
 #' To invert the switch one can use `xo` which is equivalent of
 #' `ox(Negate(.f), ..., .then, .else)`.
 #'
+#' @return object identical to `.then` or `.else` depending on the condition
+#' result.
 #' @examples
 #' # if (is.null(NULL)) NULL else 1
 #' ox(NULL, .f = is.null, .else = 1)

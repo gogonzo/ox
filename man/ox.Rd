@@ -23,6 +23,10 @@ be taken.}
 directly by named argument then the last argument from \code{...} will
 be considered as a replacement.}
 }
+\value{
+object identical to \code{.then} or \code{.else} depending on the condition
+result.
+}
 \description{
 Short hand if-else functions for simple values switching.
 }

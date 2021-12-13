@@ -40,14 +40,17 @@
 #' @examples
 #' # switch values of vector by
 #' OX(is.na, c(1, NA, 3), .else = c(2, 2, 2))
-#' @return object (`atomic`, `list`) - same object as `.then` with values
-#' replaced by `.else`.
+#' @return `atomic` or `list` of same object as `.then` with values
+#' replaced by `.else`. Class of the returned object most likely will be the
+#' same as `.else` when any of the values of `.then` will be replaced
 #' @export
 OX <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]]) { # nolint
   OX_default(.f = .f, ..., .then = .then, .else = .else, .invert = TRUE)
 }
 
 #' @rdname vectorized-ox
+#' @return `atomic` vector or `list` of the same length as `.then`. Class of the
+#' returned object depends object
 #' @examples
 #' XO(is.na, c(1, NA, 3), .else = c(2, 2, 2))
 #' @export
