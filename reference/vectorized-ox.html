@@ -87,8 +87,8 @@ last argument from <code>...</code> will be considered as a replacement.</p></dd
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>object (<code>atomic</code>, <code>list</code>) - same object as <code>.then</code> with values
-replaced by <code>.else</code>.</p>
+    <p><code>atomic</code> or <code>list</code>. Returned object is a <code>.then</code> object with elements
+replaced by <code>.else</code> depending on a result of the logical condition.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -108,9 +108,11 @@ returned indices <code>.then[!idx] &lt;- .else</code></p></li>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># switch values of vector by</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># switch values of the vector when condition is true</span></span>
 <span class="r-in"><span class="fu">OX</span><span class="op">(</span><span class="va">is.na</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="cn">NA</span>, <span class="fl">3</span><span class="op">)</span>, .else <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  2 NA  2</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># use OX to invert negate the condition</span></span>
 <span class="r-in"><span class="fu">XO</span><span class="op">(</span><span class="va">is.na</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="cn">NA</span>, <span class="fl">3</span><span class="op">)</span>, .else <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 2 3</span>
 </code></pre></div>
@@ -123,7 +125,7 @@ returned indices <code>.then[!idx] &lt;- .else</code></p></li>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Dawid Kałędkowski.</p>
+  <p></p><p>Developed by Dawid Kałędkowski, Paweł Rucki.</p>
 </div>
 
 <div class="pkgdown">
