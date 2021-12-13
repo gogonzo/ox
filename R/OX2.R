@@ -60,7 +60,7 @@ XO <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]]) { #
 #' Utility function to run OX
 #'
 #' @inheritParams vectorized-ox
-#' @param .invert (`logical(1)`)
+#' @param .invert (`logical(1)`) whether to invert the indices
 #' @keywords internal
 OX_default <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]], .invert = FALSE) { # nolint
   check_thenelse_OX(.then, .else)
