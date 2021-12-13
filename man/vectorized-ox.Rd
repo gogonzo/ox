@@ -29,12 +29,8 @@ NOTE, that if \code{.else} is not specified directly by named argument then the
 last argument from \code{...} will be considered as a replacement.}
 }
 \value{
-\code{atomic} or \code{list} of same object as \code{.then} with values
-replaced by \code{.else}. Class of the returned object most likely will be the
-same as \code{.else} when any of the values of \code{.then} will be replaced
-
-\code{atomic} vector or \code{list} of the same length as \code{.then}. Class of the
-returned object depends object
+\code{atomic} or \code{list}. Returned object is de facto a \code{.then} object with
+elements replaced by \code{.else} depending on a result of the logical condition.
 }
 \description{
 Switch the values of the vector by another on specific indices.
@@ -61,7 +57,9 @@ To invert the switch one can use \code{XO} which is equivalent of
 \code{OX(Negate(.f), ..., .then, .else)}.
 }
 \examples{
-# switch values of vector by
+# switch values of the vector when condition is true
 OX(is.na, c(1, NA, 3), .else = c(2, 2, 2))
+
+# use OX to invert negate the condition
 XO(is.na, c(1, NA, 3), .else = c(2, 2, 2))
 }

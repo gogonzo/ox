@@ -38,20 +38,19 @@
 #' `OX(Negate(.f), ..., .then, .else)`.
 #'
 #' @examples
-#' # switch values of vector by
+#' # switch values of the vector when condition is true
 #' OX(is.na, c(1, NA, 3), .else = c(2, 2, 2))
-#' @return `atomic` or `list` of same object as `.then` with values
-#' replaced by `.else`. Class of the returned object most likely will be the
-#' same as `.else` when any of the values of `.then` will be replaced
+#' @return `atomic` or `list`. Returned object is de facto a `.then` object with
+#' elements replaced by `.else` depending on a result of the logical condition.
 #' @export
 OX <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]]) { # nolint
   OX_default(.f = .f, ..., .then = .then, .else = .else, .invert = TRUE)
 }
 
 #' @rdname vectorized-ox
-#' @return `atomic` vector or `list` of the same length as `.then`. Class of the
-#' returned object depends object
 #' @examples
+#'
+#' # use OX to invert negate the condition
 #' XO(is.na, c(1, NA, 3), .else = c(2, 2, 2))
 #' @export
 XO <- function(.f, ..., .then = list(...)[[1]], .else = rev(list(...))[[1]]) { # nolint

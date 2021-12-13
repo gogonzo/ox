@@ -96,7 +96,7 @@ check_thenelse_OX <- function(.then, .else) { # nolint
 #' then `[!idx]`, if `integer` then `[-idx]`
 #'
 #' @inheritParams validate_f_out
-#' @return object identival to `idx` input but with inverted values.
+#' @return object identical to `idx` input but with inverted values.
 #' @keywords internal
 invert_indices <- function(idx) {
   if (is.logical(idx)) {
